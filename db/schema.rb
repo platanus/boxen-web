@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120927004840) do
+ActiveRecord::Schema.define(:version => 20130617234330) do
+
+  create_table "boxen_mods", :force => true do |t|
+    t.string   "name"
+    t.datetime "last_check"
+    t.string   "repo"
+    t.string   "current_version"
+    t.string   "last_version"
+    t.boolean  "updated"
+    t.integer  "position"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "login"
