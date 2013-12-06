@@ -74,7 +74,7 @@ class AuthController < ApplicationController
 
     http         = Net::HTTP.new(uri.host, uri.port)
     request      = Net::HTTP::Get.new("#{uri.path}?#{uri.query}")
-    http.use_ssl = true
+    #http.use_ssl = true
 
     http.request(request).code == '204'
   end
