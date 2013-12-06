@@ -52,7 +52,7 @@ class AuthController < ApplicationController
 
     http         = Net::HTTP.new(uri.host, uri.port)
     request      = Net::HTTP::Get.new("#{uri.path}?#{uri.query}")
-    http.use_ssl = true
+    #http.use_ssl = true
 
     team_members = JSON.parse(http.request(request).body)
 

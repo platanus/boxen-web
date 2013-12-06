@@ -6,7 +6,7 @@ Boxen::Application.configure do
   config.assets.digest                     = true
   config.cache_classes                     = true
   config.consider_all_requests_local       = false
-  config.force_ssl                         = true
+  config.force_ssl                         = false
   config.i18n.fallbacks                    = true
   config.serve_static_assets               = false
 end
