@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="boxen-web">
+  <head>
+    <title>Boxen</title>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= stylesheet_link_tag "modules", :media => "all" %>
+    <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body ng-controller="BoxenModules">
+    <div id="width">
+      <h1>Boxen Modules</h1>
+        <div>
+          <h3>
+            <img src="/assets/red-on-32.png" ng-show="(modules | outdated).length > 0"/>
+            <img src="/assets/green-on-32.png" ng-show="(modules | outdated).length == 0"/>
+            {{(modules | outdated).length}} of your {{modules.length}} modules have updates available
+          </h3>
+        </div>
+        <ul class="modules">
+          <li ng-repeat="module in modules" class="module">
+            <div class="header">
+              <img ng-src="/assets/green-on-16.png" width="16" height="16" ng-show="module.updated" class="led"/>
+              <img ng-src="/assets/red-on-16.png" width="16" height="16" ng-hide="module.updated" class="led" />
+
+              <span>
+                <a ng-href="http://github.com/{{module.repo}}" target="_blank" class="name">{{module.name}}</a>
+                <span class="newVersion" ng-hide="module.updated">Version {{module.last_version}} available</span>
+              </span>
+              <!-- <span>{{module.current_version}}</span>-->
+              <div class="status">
+                 {{module.current_version}}
+                <!-- <div class="last-check">Last checked {{module.last_check | moment}}</div> -->
+              </div>
+              <span>
+              </span>
+              <div class="changes" ng-hide="module.updated">
+                <!-- <span>{{module.last_version}}</span> -->
+                 <button ng-click="checkDiff(module.name)">View changes</button>
+              </div>
+              <!-- <span>
+                <button ng-click="checkModule(module.name)">Check Now</button>
+              </span> -->
+            </div>
+            <div class="content" ng-show="module.changes">
+              <div>There are {{module.changes.length}} new commits up to version <span>{{module.last_version}}</span></div>
+              <ul>
+                <li ng-repeat="change in module.changes" class="change cf">
+                  <a ng-href="{{change.html_url}}" target="_blank" title="{{change.commit.message}}">
+                    <div class="avatar">
+                      <img ng-src="{{change.author.avatar_url}}" height="30" width="30"/>
+                    </div>
+                    <div>
+                      <div class="message">
+                        {{change.commit.message.substr(0, 80)}}<span ng-show="change.commit.message.length >= 80">...</span>
+                      </div>
+                      <div class="author">
+                        by {{change.author.login}} <span>{{change.commit.author.date | moment}}</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </table>
+
+    </div>
+
+    <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js" %>
+    <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js" %>
+    <%= javascript_include_tag "modules" %>
+  </body>
+</html>

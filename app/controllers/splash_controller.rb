@@ -18,4 +18,5 @@ class SplashController < ApplicationController
       render :status => :not_found, :text => "Nothing here"
     end
   end
+
 end

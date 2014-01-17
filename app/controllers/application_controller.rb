@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_filter :auth
-  protect_from_forgery
+  #protect_from_forgery
 
   def current_user
     if session[:github_user_id]

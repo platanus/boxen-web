@@ -8,6 +8,8 @@ gem "omniauth-github",    "1.1.0"
 gem "pg",                 "0.14.1"
 gem "rails",              "3.2.16"
 gem "unicorn",            "4.5.0"
+gem "octokit", 			  "1.24.0"
+gem "semantic", 	  	  "~> 1.3.0"
 
 group :assets do
   gem "coffee-rails", "3.2.2"
