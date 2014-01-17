@@ -1,6 +1,7 @@
 /.bundle
 /.env*
-/.rbenv-version
+/.ruby-version
+/.rbenv-vars
 /.sass-cache
 /bin
 /log
